@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/imanjit/hw10-employee-tracker#readme",
   "dependencies": {
+    "inquirer": "^8.1.1",
     "mysql": "^2.18.1"
   }
 }
