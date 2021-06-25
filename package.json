@@ -1,0 +1,22 @@
+{
+  "name": "hw10-employee-tracker",
+  "version": "1.0.0",
+  "description": "A command line application used to manage a company's employees",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imanjit/hw10-employee-tracker.git"
+  },
+  "author": "https://github.com/imanjit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imanjit/hw10-employee-tracker/issues"
+  },
+  "homepage": "https://github.com/imanjit/hw10-employee-tracker#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
