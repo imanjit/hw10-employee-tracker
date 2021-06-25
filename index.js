@@ -27,4 +27,4 @@ const prompts = () => {
             "Quit"
         ]
     })
-}
+};
