@@ -72,3 +72,25 @@ const viewRoles = () => {
         prompts();
     })
 }; 
+
+const addDepartment = () => {
+    inquirer.prompt([
+        {
+            name: "newDept",
+            type: "input",
+            message: "Name of department?"
+        }
+    ]).then((ans) => {
+        connection.query(
+            "INSERT INTO department SET ?",
+            {
+                name: ans.newDept
+            });
+            let query = "SELECT * FROM department";
+            connection.query(query, (req, res) => {
+                console.log("Department added")
+                console.table("Departments:", res);
+                prompts();
+            })
+    })
+};
