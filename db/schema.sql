@@ -5,14 +5,14 @@ USE employees;
 
 CREATE TABLE department (
     id INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) UNIQUE NOT NULL,
+    name VARCHAR(30) UNIQUE NOT NULL
 );
 
 CREATE TABLE role (
     id INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) UNIQUE NOT NULL,
     salary DECIMAL UNSIGNED NOT NULL,
-    department_id INT UNSIGNED NOT NULL,
+    department_id INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE employee (
@@ -20,5 +20,5 @@ CREATE TABLE employee (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT UNSIGNED NOT NULL,
-    manager_id INT UNSIGNED,
+    manager_id INT UNSIGNED
 );

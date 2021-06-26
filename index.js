@@ -3,18 +3,22 @@ const inquirer = require("inquirer");
 require("console.table");
 
 const connection = mysql.createConnection({
-    host: "localhost", 
+    host: "localhost",
+    port: 3306, 
     user: "root",
-    password: "password",
+    password: "sqlpassword",
     database: "employees"
 });
 
-connection.connect(prompts());
+connection.connect((err) => {
+    if (err) throw (err);
+    prompts();
+});
 
 const prompts = () => {
     inquirer.prompt({
         name: "action",
-        type: "choice",
+        type: "list",
         message: "What would you like to do?",
         choices: [
             "View employees",
@@ -24,9 +28,22 @@ const prompts = () => {
             "Add department",
             "Add role",
             "Update employee role",
-            "Remove employee",
             "Quit"
         ]
+    }).then((ans) => {
+        switch(ans.action) {
+            case "View employees":
+                viewEmployees();
+                break;
+            case "View departments":
+                viewDepartments();
+                break;
+            case "View roles":
+                viewRoles;
+                break;
+            default:
+                break;
+        }
     })
 };
 
