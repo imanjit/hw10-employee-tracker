@@ -27,7 +27,6 @@ const prompts = () => {
             "Add employee",
             "Add department",
             "Add role",
-            "Update employee role",
             "Quit"
         ]
     }).then((ans) => {
@@ -40,6 +39,18 @@ const prompts = () => {
                 break;
             case "View roles":
                 viewRoles;
+                break;
+            case "Add employee":
+                addEmployee();
+                break;
+            case "Add department":
+                addDepartment();
+                break;
+            case "Add role":
+                addRole();
+                break;
+            case "Quit": 
+                quitApp();
                 break;
             default:
                 break;
@@ -93,4 +104,55 @@ const addDepartment = () => {
                 prompts();
             })
     })
+};
+
+const addRole = () => {
+    connection.query("SELECT * FROM department", (req, res) => {
+        inquirer.prompt([
+            {
+                name: "new_role",
+                type: "input",
+                message: "What is the new role?"
+            },
+            {
+                name: "salary",
+                type: "input",
+                message: "Salary of this role?"
+            },
+            {
+                name: "department",
+                type: "list",
+                choices: () => {
+                    let dept = []
+                    for (let i = 0; i < res.length; i++) {
+                        dept.push(res[i].name);
+                    }
+                    return dept;
+                },
+            }
+        ]).then((ans) => {
+            let deptId;
+            for (let a = 0; a < res.length; a++) {
+                if (res[a].name == ans.department) {
+                    deptId = res[a].id;
+                }
+            }
+            connection.query(
+                "INSERT INTO role SET ?",
+                {
+                    title: ans.new_role,
+                    salary: ans.salary,
+                    deptId: deptId,
+                },
+                (req, res) => {
+                    console.log("Role added");
+                    console.table("Roles:", res);
+                    prompts();
+                })
+        })
+    })
+};
+
+const quitApp = () => {
+    connection.end();
 };
